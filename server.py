@@ -28,20 +28,18 @@ app = Flask(__name__)
 def index():
     return send_file('chat.html')
 
-@app.route('/socket.io.js')
-@app.route('/stylesheets/style.css')
-@app.route('/WebSocketMain.swf')
-def static_file():
-    return send_file(request.path[1:])
-
 @app.route("/socket.io/<path:path>")
 def run_socketio(path):
     socketio_manage(request.environ, {'': ChatNamespace})
 
-
 if __name__ == '__main__':
     print 'Listening on http://localhost:8080'
     app.debug = True
+    import os
+    from werkzeug.wsgi import SharedDataMiddleware
+    app = SharedDataMiddleware(app, {
+        '/': os.path.join(os.path.dirname(__file__), 'static')
+        })
     from socketio.server import SocketIOServer
     SocketIOServer(('0.0.0.0', 8080), app,
         namespace="socket.io", policy_server=False).serve_forever()

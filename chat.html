@@ -49,10 +49,8 @@ function message (from, msg) {
 // dom manipulation
 $(function () {
     $('#set-nickname').submit(function (ev) {
-console.log('set-nickname');
         socket.emit('nickname', $('#nick').val(), function (set) {
-console.log('got',set);
-if (!set) {
+            if (!set) {
                 clear();
                 return $('#chat').addClass('nickname-set');
             }

@@ -1,5 +1,5 @@
 from gevent import monkey; monkey.patch_all()
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, redirect
 
 from socketio import socketio_manage
 from socketio.namespace import BaseNamespace
@@ -26,7 +26,7 @@ class ChatNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return send_file('chat.html')
+    return redirect('/chat.html')
 
 @app.route("/socket.io/<path:path>")
 def run_socketio(path):
@@ -43,4 +43,4 @@ if __name__ == '__main__':
     from socketio.server import SocketIOServer
     SocketIOServer(('0.0.0.0', 8080), app,
         namespace="socket.io", policy_server=False).serve_forever()
-    
+

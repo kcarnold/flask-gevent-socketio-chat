@@ -26,7 +26,7 @@ class ChatNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
 app = Flask(__name__)
 @app.route('/')
 def index():
-    return send_file('chat.html')
+    return send_file('templates/chat.html')
 
 @app.route("/socket.io/<path:path>")
 def run_socketio(path):

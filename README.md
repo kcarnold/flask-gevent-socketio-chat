@@ -34,13 +34,13 @@ On a Debian/Ubuntu computer :
 
 If you use virtualenv (very much encouraged though not mandatory)
 
-    cd flask-gevent-socketio-chat
     virtualenv venv
     . venv/bin/activate
 
 ## Install the project and its dependencies
 
     git clone git@github.com:vinyll/flask-gevent-socketio-chat.git
+    cd flask-gevent-socketio-chat
     pip install -r requirements.pip
 
 

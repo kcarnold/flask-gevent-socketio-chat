@@ -1,0 +1,8 @@
+Flask==0.9
+Jinja2==2.6
+Werkzeug==0.8.3
+gevent==0.13.8
+gevent-socketio==0.3.5-rc2
+gevent-websocket==0.3.6
+greenlet==0.4.0
+wsgiref==0.1.2
